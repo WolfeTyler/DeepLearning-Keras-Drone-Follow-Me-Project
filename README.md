@@ -2,8 +2,16 @@
 
 In this project, I trained a deep neural network to identify and track a target character in drone quad-copter simulator.
 
-[image_0]: ./docs/misc/sim_screenshot.png
-![alt text][image_0] 
+
+[//]: # (Image References)
+[image0]: ./images/FCN.png
+[image1]: ./images/hyper_params.png
+[image2]: ./images/eval_results.png
+[image3]: ./images/train_loss.png
+[image4]: ./images/network_design.png
+[image5]: ./docs/misc/sim_screenshot.png
+
+![alt text][image5] 
 
 ## Setup Instructions
 **Clone the repository**
