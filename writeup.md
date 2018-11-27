@@ -12,13 +12,29 @@
 
 
 ### Network Setup
+
 The FCN network is used to perform inference against the pixels in an image. The FCN is composed of a series of convolution layers down to a 1x1.
 
-The first section of the network is the encoder. The 1x1 convolution layer is not tall or wide but is deep in filters. Although the end of the encoder is 1x1 the output isn't necessarily 1x1.
-
-The next section of the network is the decoder. It's composed of transposed convolutions that increase the height and width while shortening the depth in opposite fashion as the end of the encoder.
-
 To solve the follow me challenge I used a 3 encoder, 1x1 convolution, 3 decoder setup.
+
+#### Encoder
+
+The first section of the network is the encoder. Encoding is there process whereby the input size is reduced using multiple hidden layers until a small hidden layer in the center is reached. Each of the encoder blocks allow the model to cumulatively learning building off of the previous block. The initial blocks focus on basic attributes with later blocks able to identify more specific objects and even people. 
+
+The 1x1 convolution layer is not tall or wide but is deep in filters. Although the end of the encoder is 1x1 the output isn't necessarily 1x1.
+
+#### Decoder
+
+The next section of the network is the decoder. The network uses the hidden representation from the center layer in order to reconstruct the input, which is known as decoding. It's composed of transposed convolutions that increase the height and width while shortening the depth in opposite fashion as the end of the encoder. Each layer within the decoder deconstructs the image step by step.
+
+#### Skip Connections
+
+Skip Connections are used in order to allow the network to use data from alternate resolutions across the network.
+
+#### 1x1 Convolution
+
+A 1x1 convolution is used as a dimensionality reduction technique within the network. The 1x1 can be used in place of a fully connected layer because while a fully connected layer requires a given size the 1x1 can take in anything as long as spatial extent is greater than or equal to 100x100. 
+
 
 ![alt_text][image0]
 
@@ -53,10 +69,16 @@ workers = 1
 
 ![alt_text][image1]
 
+
 ### Performance Results
 
 ![alt_text][image3]
 
 ![alt_text][image2]
 
-The model could be improved with additional training data both following the hero in dense crowded areas, and also in larger patrol paths with the hero appearing less frequently. Tracking a dog or car could also be completed by the model but the training would need to include other animals/vehicles in an alternate environment and with different patrol patterns.
+
+### Future Enhancements
+
+The model could be improved with additional training data both following the hero in dense crowded areas that are challenging, and also in larger patrol paths with the hero appearing less frequently in order to train against false positives. 
+
+Tracking a dog or car could also be completed by the model but the training would need to include other animals/vehicles in an alternate environment and with different patrol patterns.
